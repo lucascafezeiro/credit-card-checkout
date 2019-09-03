@@ -7,7 +7,7 @@ No backend here and no Vuex.
 
 The layout used in this project was https://dribbble.com/shots/5984008-Daily-UI-Challenge-002-Credit-Card-Checkout/attachments
 
-Modificated to work on mobiles devices.
+The layout was adapted to work on mobiles devices (Added the menu with order amount and a button to show the shopping cart).
 
 The icons was picked up by www.flaticon.com
 
