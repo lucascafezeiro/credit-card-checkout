@@ -96,7 +96,7 @@ export default {
         this.status = 'shopping_cart_empty';
       }else {
         this.purchaseData.paymentData = paymentData;
-        this.status = 'waiting';
+        this.status = 'processing';
         setTimeout(() => {
           this.status = 'successful';
         }, 2000);
