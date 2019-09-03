@@ -45,7 +45,6 @@
                     <VInputText 
                         v-bind:value="(formPaymentData.CVV === 0)? '': formPaymentData.CVV.toString()"
                         name="CVV"
-                        type="number"
                         label="CVV:"
                         v-on:input="onInput"
                         v-bind:error="this.getError('CVV')"
