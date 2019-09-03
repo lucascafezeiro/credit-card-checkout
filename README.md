@@ -1,4 +1,17 @@
-# credit-card-checkout
+
+# Example - CREDIT CARD CHECKOUT - VUE.JS V2.6
+
+This project is a credit card checkout form frontend developed with VUE.JS.
+
+No backend here and no Vuex.
+
+The layout used in this project was https://dribbble.com/shots/5984008-Daily-UI-Challenge-002-Credit-Card-Checkout/attachments
+
+Modificated to work on mobiles devices.
+
+The icons was picked up by www.flaticon.com
+
+
 
 ## Project setup
 ```
