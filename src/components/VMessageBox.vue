@@ -9,6 +9,7 @@
         <img src="../assets/icons/spinner.svg" width="100" height="100" />
       </div>
     </div>
+    
     <div v-if="status === 'successful'" class="popup">
       <h2>Thank you for your order! </h2>
       <div class="successful">
@@ -21,15 +22,26 @@
       </div>
     </div>
 
+    <div v-if="status === 'shopping_cart_empty'" class="popup">
+      <h2>You got a error! </h2>
+      <div class="error">
+        Your shoping cart is empty.<br>
+        <div class="button continue" v-on:click="continueBuy">
+            Continue buying.
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 export default {
     name : "VMessageBox",
-    data () {
-      return {
-        status: 'processing'
+    props: {
+      status:  {
+        type: String,
+        required: true
       }
     },
     methods: {
@@ -37,11 +49,6 @@ export default {
         this.$emit('changeStatus', 'none');
         location.reload();
       }
-    },
-    mounted () {
-      setTimeout(() => {
-          this.status = 'successful';
-      }, 2000);
     }
 }
 </script>
@@ -82,6 +89,9 @@ export default {
   text-align: left;
 }
 
+.error{
+  text-align: left;
+}
 
 .button {
     margin-top:4%;

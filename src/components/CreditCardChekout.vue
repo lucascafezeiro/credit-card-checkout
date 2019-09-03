@@ -18,7 +18,8 @@
             />
         </div>
         <VMessageBox 
-            v-if="status !== 'none'" 
+            v-if="status !== 'none'"
+            v-bind:status="status"
             v-on:changeStatus="changeStatus"
         />
     </div>
@@ -91,8 +92,15 @@ export default {
   },
   methods: {
     submitOrder (paymentData) {
+      if (this.purchaseData.shoppingCartData.shoppingCartItems.length === 0) {
+        this.status = 'shopping_cart_empty';
+      }else {
         this.purchaseData.paymentData = paymentData;
-        this.status = 'waiting'
+        this.status = 'waiting';
+        setTimeout(() => {
+          this.status = 'successful';
+        }, 2000);
+      }
     },
     changeStatus  (status) {
         this.status = status
