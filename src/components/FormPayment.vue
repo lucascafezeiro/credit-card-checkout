@@ -13,7 +13,6 @@
             <VInputText
                 v-bind:value="(formPaymentData.cardNumber === 0)? '': formPaymentData.cardNumber.toString()"
                 name="cardNumber"
-                type="number"
                 label="Card Number:"
                 v-on:input="onInput"
                 v-bind:error="this.getError('cardNumber')"
@@ -25,7 +24,6 @@
                 <div class="field expiration-date-month">    
                     <VInputSelect 
                         name="month"
-                        type="number"
                         label="MM"
                         v-bind:value="(formPaymentData.expirationDate.month === 0)? '': formPaymentData.expirationDate.month.toString()"
                         v-on:input="onInput"
@@ -36,7 +34,6 @@
                 <div class="field expiration-date-year ">    
                     <VInputSelect 
                         name="year"
-                        type="number"
                         label="YYYY"
                         v-bind:value="(formPaymentData.expirationDate.year === 0)? '': formPaymentData.expirationDate.year.toString()"
                         v-on:input="onInput"

@@ -9,7 +9,7 @@
             />
         </div>
         <div class="payment-panel-container">
-            <PaymentPanel 
+            <VPaymentPanel 
                 v-bind:purchaseData="purchaseData"
                 v-on:incrementItemQuantity="incrementItemQuantity"
                 v-on:decrementItemQuantity="decrementItemQuantity"
@@ -27,14 +27,14 @@
 <script>
 
 import VShoppingCartPanel from './VShoppingCartPanel';
-import PaymentPanel from './PaymentPanel';
+import VPaymentPanel from './VPaymentPanel';
 import VMessageBox from './VMessageBox';
 
 export default {
   name: 'app',
   components: {
     VShoppingCartPanel,
-    PaymentPanel,
+    VPaymentPanel,
     VMessageBox
   },
   data () {
