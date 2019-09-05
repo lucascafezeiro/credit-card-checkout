@@ -1,59 +1,61 @@
 <template>
     <div>
-        <div class="field name-on-card">
-            <VInputText 
-                v-bind:value="formPaymentData.nameOnCard"
-                name="nameOnCard" 
-                label="Name On Card:" 
-                v-on:input="onInput"
-                v-bind:error="this.getError('nameOnCard')"
-            />
-        </div>
-        <div class="field name-on-card">
-            <VInputText
-                v-bind:value="(formPaymentData.cardNumber === 0)? '': formPaymentData.cardNumber.toString()"
-                name="cardNumber"
-                label="Card Number:"
-                v-on:input="onInput"
-                v-bind:error="this.getError('cardNumber')"
-            />
-        </div>
-        <div class="expiration-date-container">
-            <div class="field label">Expiration Date</div>
-            <div>
-                <div class="field expiration-date-month">    
-                    <VInputSelect 
-                        name="month"
-                        label="MM"
-                        v-bind:value="(formPaymentData.expirationDate.month === 0)? '': formPaymentData.expirationDate.month.toString()"
-                        v-on:input="onInput"
-                        v-bind:items="months"
-                        v-bind:error="this.getError('month')"
-                    />
-                </div>
-                <div class="field expiration-date-year ">    
-                    <VInputSelect 
-                        name="year"
-                        label="YYYY"
-                        v-bind:value="(formPaymentData.expirationDate.year === 0)? '': formPaymentData.expirationDate.year.toString()"
-                        v-on:input="onInput"
-                        v-bind:items="years"
-                        v-bind:error="this.getError('year')"
-                    />
-                </div>
-                <div class="field expiration-date-year ">    
-                    <VInputText 
-                        v-bind:value="(formPaymentData.CVV === 0)? '': formPaymentData.CVV.toString()"
-                        name="CVV"
-                        label="CVV:"
-                        v-on:input="onInput"
-                        v-bind:error="this.getError('CVV')"
-                    />
+        <form v-on:submit.prevent="submit">
+            <div class="field name-on-card">
+                <VInputText 
+                    v-bind:value="formPaymentData.nameOnCard"
+                    name="nameOnCard" 
+                    label="Name On Card:" 
+                    v-on:input="onInput"
+                    v-bind:error="this.getError('nameOnCard')"
+                />
+            </div>
+            <div class="field name-on-card">
+                <VInputText
+                    v-bind:value="(formPaymentData.cardNumber === 0)? '': formPaymentData.cardNumber.toString()"
+                    name="cardNumber"
+                    label="Card Number:"
+                    v-on:input="onInput"
+                    v-bind:error="this.getError('cardNumber')"
+                />
+            </div>
+            <div class="expiration-date-container">
+                <div class="field label">Expiration Date</div>
+                <div>
+                    <div class="field expiration-date-month">    
+                        <VInputSelect 
+                            name="month"
+                            label="MM"
+                            v-bind:value="(formPaymentData.expirationDate.month === 0)? '': formPaymentData.expirationDate.month.toString()"
+                            v-on:input="onInput"
+                            v-bind:items="months"
+                            v-bind:error="this.getError('month')"
+                        />
+                    </div>
+                    <div class="field expiration-date-year ">    
+                        <VInputSelect 
+                            name="year"
+                            label="YYYY"
+                            v-bind:value="(formPaymentData.expirationDate.year === 0)? '': formPaymentData.expirationDate.year.toString()"
+                            v-on:input="onInput"
+                            v-bind:items="years"
+                            v-bind:error="this.getError('year')"
+                        />
+                    </div>
+                    <div class="field expiration-date-year ">    
+                        <VInputText 
+                            v-bind:value="(formPaymentData.CVV === 0)? '': formPaymentData.CVV.toString()"
+                            name="CVV"
+                            label="CVV:"
+                            v-on:input="onInput"
+                            v-bind:error="this.getError('CVV')"
+                        />
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <div class="button-container">
-            <div class="button" v-on:click="submit">Check Out.</div>
+            <button type="submit" class="button" v-on:click="submit">Check Out.</button>
         </div>
     </div>
 </template>
@@ -249,6 +251,7 @@ export default {
 
 .button {
     cursor: pointer;
+    border: none;
     background-color: #407CE7;
     color: #FFF;
     font-size: 0.8em;
