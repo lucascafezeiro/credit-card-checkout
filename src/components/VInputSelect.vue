@@ -132,17 +132,17 @@ export default {
             this.$emit('input', {key: this.name, value: this.currentValue});
         },
         changeItem(event) {
-            const IS_LAST_ITEM_CURRENT_LISTA = ((this.currentKey+1) % this.size === 0) && (this.currentKey >= 0);
-            const IS_LAST_ITEM_ALL_LISTA = (this.currentValue === this.items[this.items.length-1]);
-            const IS_FIRST_ITEM_ALL_LISTA = (this.currentValue === this.items[0]);
+            const IS_LAST_ITEM_CURRENT_LIST = ((this.currentKey+1) % this.size === 0) && (this.currentKey >= 0);
+            const IS_LAST_ITEM_ALL_LIST = (this.currentValue === this.items[this.items.length-1]);
+            const IS_FIRST_ITEM_ALL_LIST = (this.currentValue === this.items[0]);
 
             if (this.currentKey > -1) {
                 this.currentList[this.currentKey].isActive = false;
             }
 
             if (event == 'down') {
-                if (!IS_LAST_ITEM_ALL_LISTA) {
-                    if ( IS_LAST_ITEM_CURRENT_LISTA ) {
+                if (!IS_LAST_ITEM_ALL_LIST) {
+                    if ( IS_LAST_ITEM_CURRENT_LIST ) {
                         this.currentStart++;
                         this.updateCurrentList();
                     } else if (this.currentKey < this.items.length-1) {
@@ -151,7 +151,7 @@ export default {
                 }
             } else if (event == 'up') {
                 if (this.currentKey === 0) {
-                    if (!IS_FIRST_ITEM_ALL_LISTA) {
+                    if (!IS_FIRST_ITEM_ALL_LIST) {
                         this.currentStart--;
                         this.updateCurrentList();
                     }
