@@ -12,7 +12,7 @@
                 v-on:input="onInput"
                 v-on:arrow-down="changeItem('down')"
                 v-on:arrow-up="changeItem('up')"
-                v-on:enter="closeList"
+                v-on:enter="onEnter"
                 v-bind:error="error"
             />
             <div class="icon">▼</div>
@@ -126,6 +126,10 @@ export default {
         selectItem(item) {
             this.currentValue = item;
             this.$emit('input', {key: this.name, value: item});
+        },
+        onEnter () {
+            this.closeList();
+            this.$emit('input', {key: this.name, value: this.currentValue});
         },
         changeItem(event) {
             const IS_LAST_ITEM_CURRENT_LISTA = ((this.currentKey+1) % this.size === 0) && (this.currentKey >= 0);
