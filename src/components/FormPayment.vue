@@ -53,10 +53,12 @@
                     </div>
                 </div>
             </div>
+            <div class="button-container">
+                <VButton type="submit" v-on:click="submit">
+                    Check Out.
+                </VButton>
+            </div>
         </form>
-        <div class="button-container">
-            <button type="submit" class="button" v-on:click="submit">Check Out.</button>
-        </div>
     </div>
 </template>
 
@@ -64,12 +66,15 @@
 
 import VInputText from './VInputText';
 import VInputSelect from './VInputSelect';
+import VButton from './VButton';
+import FormErrorHandler from './FormErrorHandler';
 
 export default {
     name: 'FormPayment',
     components: {
         VInputText,
         VInputSelect,
+        VButton
     },
     data () {
         return {
@@ -86,10 +91,10 @@ export default {
                     year: 0
                 },
                 CVV: 0
-            },
-            formErrors: []
+            }
         }
     },
+    mixins: [FormErrorHandler],
     methods : {
         submit() {
 
@@ -143,56 +148,28 @@ export default {
                 this.$emit('submit',this.formPaymentData);
             }
         },
-        insertError (field, message) {
-            this.formErrors.push(
-                {
-                    field : field,
-                    hasError: true,
-                    message: message
-                }
-            );
-        },
-        getError(field) {
-            let index = this.formErrors.findIndex ((error) => (error.field === field));
-            if ( index > -1) {
-                return this.formErrors[index];
-            } else {
-                return {
-                    hasError: false,
-                    message: ''
-                }
-            }
-        },
-        resetError (field) {
-            this.formErrors = this.formErrors.filter(
-                (error) => (error.field !== field)
-            )
-        },
         onInput (event) {
             const CVV_ONLY_NUMBER = /^\d+$/.test(event.value); 
             const CARD_NUMBER_ONLY_NUMBER = /^\d+$/.test(event.value); 
+
+            this.resetError(event.key);
             
             switch(event.key){
                 case 'nameOnCard':
-                    this.resetError('nameOnCard');
                     this.formPaymentData.nameOnCard = event.value.toUpperCase();
                     break;
                 case 'cardNumber':
-                    this.resetError('cardNumber');
                     if ( (CARD_NUMBER_ONLY_NUMBER) || (event.value === '') ) {
                         this.formPaymentData.cardNumber = event.value;
                     }
                     break;
                 case 'month': 
-                    this.resetError('month');
                     this.formPaymentData.expirationDate.month = Number(event.value);
                     break;
                 case 'year': 
-                    this.resetError('year');
                     this.formPaymentData.expirationDate.year = Number(event.value);
                     break;
                 case 'CVV': 
-                    this.resetError('CVV');
                     if ( (CVV_ONLY_NUMBER) || (event.value === '') ) {
                         this.formPaymentData.CVV = Number(event.value);
                     }
@@ -249,25 +226,4 @@ export default {
     margin-left: 17%;
 }
 
-.button {
-    cursor: pointer;
-    border: none;
-    background-color: #407CE7;
-    color: #FFF;
-    font-size: 0.8em;
-    width: 80%;
-    height: 45px;
-    border-radius: 5pt;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    -webkit-box-shadow: 0px 0px 36px -5px rgba(64,125,231,1); /* Chrome all / Safari all */
-    -moz-box-shadow: 0px 0px 36px -5px rgba(64,125,231,1); /* Firefox all             */
-    box-shadow: 0px 0px 36px -5px rgba(64,125,231,1); /* Likely future           */
-    -webkit-user-select: none; /* Chrome all / Safari all */
-    -moz-user-select: none;    /* Firefox all             */
-    -ms-user-select: none;     /* IE 10+                  */
-    user-select: none;        /* Likely future           */
-
-}
 </style>

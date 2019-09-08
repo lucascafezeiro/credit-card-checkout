@@ -16,9 +16,9 @@
         <b>Order number:</b> #8273477376<br>
         <b>Name: </b> Johnny Winter<br>
         <b>Address:</b> 23754, D39, Montreal, Quebec, Canada<br>
-        <div class="button continue" v-on:click="continueBuy">
-            Continue buying.
-        </div>
+        <VButton class="button-continue" v-on:click="continueBuy">
+          Continue buying.
+        </VButton>
       </div>
     </div>
 
@@ -26,9 +26,9 @@
       <h2>You got a error! </h2>
       <div class="error">
         Your shoping cart is empty.<br>
-        <div class="button continue" v-on:click="continueBuy">
-            Continue buying.
-        </div>
+        <VButton class="button-continue" v-on:click="continueBuy">
+          Continue buying.
+        </VButton>
       </div>
     </div>
 
@@ -36,8 +36,14 @@
 </template>
 
 <script>
+
+import VButton from './VButton';
+
 export default {
     name : "VMessageBox",
+    components: {
+      VButton
+    },
     props: {
       status:  {
         type: String,
@@ -93,17 +99,9 @@ export default {
   text-align: left;
 }
 
-.button {
-    margin-top:4%;
-    cursor: pointer;
-    text-align: center;
-    height: 30px;
-    border-radius: 5px;
-    background-color: #407CE7;
-    color: #FFF;
-}
-
-.continue {
-    width: 200px;
+.button-continue {
+  margin-top: 20px;
+  height: 30px;
+  width: 200px;
 }
 </style>

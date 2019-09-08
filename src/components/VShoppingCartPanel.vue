@@ -21,13 +21,12 @@
                     />
                 </div>
                 <div class="hr-total"></div>
-                <div 
+                <VButton 
                     v-if="shoppingCartData.shoppingCartItems.length === 0"
-                    class="button"
                     v-on:click="continueBuy"
                 >
                     Continue Shopping.
-                </div>
+                </VButton>
                 <div v-else class="total-container">
                     ORDER TOTAL:
                     <div class="total-value">
@@ -42,11 +41,13 @@
 <script>
 
 import VShoppingCartPanelItem from './VShoppingCartPanelItem';
+import VButton from './VButton';
 
 export default {
     name: 'VShoppingCartPanel',
     components: {
-        VShoppingCartPanelItem
+        VShoppingCartPanelItem,
+        VButton
     },
     props: {
         shoppingCartData: {
